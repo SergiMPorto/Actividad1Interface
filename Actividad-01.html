@@ -1,37 +1,40 @@
 ﻿<!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
-
     <link rel="stylesheet" href="Actividad-01.css">
-    <H1 class="Titulo" > Piedra, Papel, Tijera, Lagarto, Spock </H1>
+    <title>Piedra, Papel, Tijera, Lagarto, Spock</title>
+    <script src="Actividad-01.js"></script>
+</head>
+
+<body>
+    <h1 class="Titulo">Piedra, Papel, Tijera, Lagarto, Spock</h1>
     <img src="img/Spoock.png" id="Spoock" />
     <img src="img/lagartija.jpg" id="lagartija" />
-    <label for=" nombre">Escriba su nombre</label>
+    <label for="nombre">Escriba su nombre</label>
     <input id="nombre" type="text" name="nombre" />
     <button>Empezar Juego</button>
 
-   </head>
-<body>
-  <div class="jugador">
-      <img src="img/papel.jpg" id="papel" />
-      <img src="img/piedra.jpg" id="piedra" />
-      <img src="img/tijera.jpg" id="tijera" />
-      <img src="img/lagarto.jpg" id="lagarto" />
-      <img src="img/spock.jpg" id="spock" />
-      </div> 
+    <div class="jugador">
+        <img src="img/papel.jpg" class="opcion" id="papel" />
+        <img src="img/piedra.jpg" class="opcion" id="piedra" />
+        <img src="img/tijera.jpg" class="opcion" id="tijera" />
+        <img src="img/lagarto.jpg" class="opcion" id="lagarto" />
+        <img src="img/spock.jpg" class="opcion" id="spock" />
+    </div>
 
-  <div class="maquina">
-      <img src="img/papel.jpg" id="papelm" />
-      <img src="img/piedra.jpg" id="piedram" />
-      <img src="img/tijera.jpg" id="tijeram" />
-      <img src="img/lagarto.jpg" id="lagartom" />
-      <img src="img/spock.jpg" id="spockm" />
-  </div>
+    <div class="ring">
+        <img src="img/boxeo.jpg" id="ring" />
+    </div>
 
-    
+    <div class="maquina">
+        <img src="img/papel.jpg" class="opcion" id="papelm" />
+        <img src="img/piedra.jpg" class="opcion" id="piedram" />
+        <img src="img/tijera.jpg" class="opcion" id="tijeram" />
+        <img src="img/lagarto.jpg" class="opcion" id="lagartom" />
+        <img src="img/spock.jpg" class="opcion" id="spockm" />
+    </div>
 </body>
+
 </html>

@@ -1,8 +1,16 @@
-﻿.Titulo {
+﻿
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #B8860B;
+}
+    .Titulo {
     font-family: Arial;
     color: black;
     font-size: 50px;
     text-align: center;
+    margin: 20px 0;
 }
 
 .fondo {
@@ -13,46 +21,42 @@
     background-position: center center;
     opacity: 1;
 }
+
 #Spoock {
-    width: 100px;
- 
+    width: 50px;
+    position: fixed;
     top: 0;
     left: 0;
 }
 
 #lagartija {
-    width: 250px;
-    
+    width: 125px;
+    position: fixed;
     top: 0;
-   right: 0;
+    right: 0;
 }
 
-
-/* Estilos para las opciones del jugador */
-.jugador {
-    margin-bottom: 5mm;
+.jugador, .maquina {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end; /* Alinea las opciones del jugador a la derecha */
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-#piedra, #papel, #tijera, #lagarto, #spock {
-    width: 100px;
-    height: 75px;
-    margin-right: 10px; /* Agregamos margen derecho para separar las opciones del jugador */
-    margin-bottom: 5mm; /* Agregamos espacio inferior entre las opciones del jugador */
+.opcion {
+    width: 200px;
+    height: 150px;
+    margin: 5mm;
 }
 
-/* Estilos para las opciones de la máquina */
-.maquina {
+.ring {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Alinea las opciones de la máquina a la izquierda */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
-#piedram, #papelm, #tijeram, #lagartom, #spockm {
-    width: 100px;
-    height: 75px;
-    margin-left: 10px; /* Agregamos margen izquierdo para separar las opciones de la máquina */
-    margin-bottom: 5mm; /* Agregamos espacio inferior entre las opciones de la máquina */
+#ring {
+    max-width: 100%;
+    max-height: 100%;
 }
