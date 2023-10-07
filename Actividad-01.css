@@ -1,0 +1,58 @@
+﻿.Titulo {
+    font-family: Arial;
+    color: black;
+    font-size: 50px;
+    text-align: center;
+}
+
+.fondo {
+    width: 300px; /* Ajusta el ancho de tu contenedor */
+    height: 200px; /* Ajusta el alto de tu contenedor */
+    background-image: url("img/Ring.jpeg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    opacity: 1;
+}
+#Spoock {
+    width: 100px;
+ 
+    top: 0;
+    left: 0;
+}
+
+#lagartija {
+    width: 250px;
+    
+    top: 0;
+   right: 0;
+}
+
+
+/* Estilos para las opciones del jugador */
+.jugador {
+    margin-bottom: 5mm;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Alinea las opciones del jugador a la derecha */
+}
+
+#piedra, #papel, #tijera, #lagarto, #spock {
+    width: 100px;
+    height: 75px;
+    margin-right: 10px; /* Agregamos margen derecho para separar las opciones del jugador */
+    margin-bottom: 5mm; /* Agregamos espacio inferior entre las opciones del jugador */
+}
+
+/* Estilos para las opciones de la máquina */
+.maquina {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea las opciones de la máquina a la izquierda */
+}
+
+#piedram, #papelm, #tijeram, #lagartom, #spockm {
+    width: 100px;
+    height: 75px;
+    margin-left: 10px; /* Agregamos margen izquierdo para separar las opciones de la máquina */
+    margin-bottom: 5mm; /* Agregamos espacio inferior entre las opciones de la máquina */
+}
