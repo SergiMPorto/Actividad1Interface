@@ -1,15 +1,16 @@
-﻿
+﻿@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500&display=swap');
+
+
+
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-image: url("img/fondoarcade.jpg"); /* Corrección aquí */
-    background-size: cover; /* Opcional, ajusta el tamaño de la imagen de fondo */
+    font-family: Pixelify Sans , sans-serif;
+    background-image: url("img/fondoarcade.jpg"); 
+    background-size: cover; 
     background-repeat: no-repeat;
-    background-attachment: fixed; /* Opcional, fija la imagen de fondo */
+    background-attachment: fixed; 
 }
-    .Titulo {
-    font-family: Arial;
+.Titulo {
+    font-family: Pixelify Sans, sans-serif;
     color: black;
     font-size: 50px;
     text-align: center;
@@ -17,8 +18,8 @@ body {
 }
 
 .fondo {
-    width: 300px; /* Ajusta el ancho de tu contenedor */
-    height: 200px; /* Ajusta el alto de tu contenedor */
+    width: 300px; 
+    height: 200px;
     background-image: url("img/Ring.jpeg");
     background-repeat: no-repeat;
     background-position: center center;
