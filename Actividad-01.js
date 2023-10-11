@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
         piedra.style.borderColor = 'red'; 
     });
 
-    // Otro código dentro de este escuchador de eventos
+    
 });
 
 let jugador;
