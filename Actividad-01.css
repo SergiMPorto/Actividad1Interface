@@ -58,15 +58,10 @@ h1{
 }
 
 #Spoock {
-<<<<<<< HEAD
-    width: 65px;
-    position: fixed;
-=======
     
     float: left;
     width: 50px;
      position: fixed;
->>>>>>> 5738638b5103923d84473e292525dd5cdc91ac5d
     top: 0;
     left: 0;
     
