@@ -1,16 +1,12 @@
-//Eventos
-
-document.addEventListener("load",()=> {
-
+document.addEventListener("DOMContentLoaded", () => {
     const piedra = document.getElementById('piedra');
 
-    
     piedra.addEventListener('click', () => {
         piedra.style.borderColor = 'red'; 
-    });{
-        
-});
+    });
 
+    // Otro código dentro de este escuchador de eventos
+});
 
 let jugador;
 let maquina;
@@ -26,7 +22,6 @@ let spoock;
 let spoockm;
 let jugadaJugador;
 let jugadaMaquina;
-
 
 function iniciarVariable() {
     jugador = document.getElementsByClassName("jugador");
@@ -45,11 +40,10 @@ function iniciarVariable() {
 
 function juegoJugador(eleccion) {
     jugadaJugador = eleccion;
-   
 }
 
 function juegoMaquina() {
-    const opciones = ["piedram", "papelm", "tijeram", "lagartom", "spockm"];
+    const opciones = ["piedram", "papelm", "tijeram", "lagartom", "spoockm"];
     jugadaMaquina = opciones[Math.floor(Math.random() * opciones.length)];
 }
 
