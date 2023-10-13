@@ -4,26 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     botonStart.addEventListener('click', () => {
         const opciones = document.getElementsByClassName("opcion");
 
-<<<<<<< HEAD
-        opcion.addEventListener('mouseout', () => {
-            opcion.style.width = '135px';
-            opcion.style.height = '101px';
-            opcion.style.borderColor = 'initial';
-        });
-        opcion.addEventListener('click', () => {
-            opcion.style.width = '200px';
-            opcion.style.height = '200px';
-            opcion.style.borderColor = 'red';
 
-            //    jugadaJugador == opcion;
-
-            jugar();
-        });
-
-    }
-
-
-=======
         for (const opcion of opciones) {
             opcion.addEventListener('mouseover', () => {
                 opcion.style.width = '200px';
@@ -37,19 +18,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 opcion.style.borderColor = 'initial';
             });
             opcion.addEventListener('click', () => {
+
                 opcion.style.width = '200px';
                 opcion.style.height = '200px';
                 opcion.style.borderColor = 'red';
+
+
 
                 jugar();
             });
 
         }
     });
-        
 
-        
->>>>>>> 73fcb058c0583867f6051d16a8592263540c535c
+
+
 });
 
 let jugador;
@@ -67,9 +50,16 @@ let spoockm;
 let jugadaJugador = 1;
 let jugadaMaquina;
 let eleccion;
-
 let victorias = 0;
 let derrotas = 0;
+
+const imagenesElecciones = {
+    0: 'img/manopiedra.png',
+    1: 'img/manopapel.png',
+    2: 'img/manotijera.png',
+    3: 'img/manolagarto.png',
+    4: 'img/manospock.png'
+};
 
 function iniciarVariable() {
     jugador = document.getElementsByClassName("jugador");
@@ -87,19 +77,37 @@ function iniciarVariable() {
 }
 
 
-
-function jugar() {
-
-    jugadaMaquina = Math.floor(Math.random() * 5);
-
 function actualizarMarcador() {
     const marcador = document.getElementById('marcador');
     marcador.textContent = `${victorias}-${derrotas}`;
 }
 
+function actualizarRing(eleccionJugador, eleccionMaquina) {
+    const ring = document.querySelector('.ring'); // Obtén el div 'ring'
+
+    // Borra cualquier contenido actual en el div 'ring'
+    ring.innerHTML = '';
+
+    // Crea una imagen para la elección del jugador
+    const imagenJugador = document.createElement('img');
+    imagenJugador.src = imagenesElecciones[eleccionJugador];
+    imagenJugador.classList.add('eleccion'); // Agrega una clase a la imagen si es necesario
+
+    // Crea una imagen para la elección de la máquina
+    const imagenMaquina = document.createElement('img');
+    imagenMaquina.src = imagenesElecciones[eleccionMaquina];
+    imagenMaquina.classList.add('eleccion'); // Agrega una clase a la imagen si es necesario
+
+    // Agrega las imágenes de las elecciones al div 'ring'
+    ring.appendChild(imagenJugador);
+    ring.appendChild(imagenMaquina);
+}
+
 function jugar() {
 
-    jugadaMaquina = Math.floor(Math.random() * 5); 
+    jugadaMaquina = Math.floor(Math.random() * 5);
+
+    actualizarRing(jugadaJugador, jugadaMaquina);
 
 
     if (jugadaJugador === jugadaMaquina) {
@@ -121,7 +129,5 @@ function jugar() {
         derrotas++;
     }
 
-
     actualizarMarcador();
 }
-
