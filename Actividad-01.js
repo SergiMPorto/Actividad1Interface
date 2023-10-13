@@ -1,11 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const piedra = document.getElementById('piedra');
+    const opciones = document.getElementsByClassName("opcion");
 
-    piedra.addEventListener('click', () => {
-        piedra.style.borderColor = 'red'; 
-    });
+    for (const opcion of opciones) {
+        opcion.addEventListener('mouseover', () => {
+            opcion.style.width = '200px';
+            opcion.style.height = '200px';
+            opcion.style.borderColor = 'red';
+        });
 
-    
+        opcion.addEventListener('mouseout', () => {
+            opcion.style.width = '135px';
+            opcion.style.height = '101px';
+            opcion.style.borderColor = 'initial';
+        });
+        opcion.addEventListener('click', () => {
+            opcion.style.width = '200px';
+            opcion.style.height = '200px';
+            opcion.style.borderColor = 'red';
+        });
+
+    }
 });
 
 let jugador;
