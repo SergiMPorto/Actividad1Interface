@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     botonStart.addEventListener('click', () => {
         const opciones = document.getElementsByClassName("opcion");
-        
 
         for (const opcion of opciones) {
             opcion.addEventListener('mouseover', () => {
@@ -17,25 +16,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 opcion.style.height = '101px';
                 opcion.style.borderColor = 'initial';
             });
+
             opcion.addEventListener('click', () => {
-
                 const eleccion = opcion.id;
-                
                 jugar(eleccion);
-
             });
-
-           
-
-
         }
-       
     });
-
-   
-        
-
-        
 });
 
 let jugador;
@@ -79,41 +66,38 @@ function iniciarVariable() {
     spoockm = document.getElementById("spoockm");
 }
 
-
 function actualizarMarcador() {
     const marcador = document.getElementById('marcador');
     marcador.textContent = `${victorias}-${derrotas}`;
 }
 
 function actualizarRing(eleccionJugador, eleccionMaquina) {
-    const ring = document.querySelector('.ring'); 
-    
+    const ring = document.querySelector('.ring');
+
     ring.innerHTML = '';
 
-    
     const imagenJugador = document.createElement('img');
     imagenJugador.src = imagenesElecciones[eleccionJugador];
-    imagenJugador.classList.add('eleccion'); 
+    imagenJugador.classList.add('eleccion');
 
-    
     const imagenMaquina = document.createElement('img');
     imagenMaquina.src = imagenesElecciones[eleccionMaquina];
-    imagenMaquina.classList.add('eleccion'); 
+    imagenMaquina.classList.add('eleccion');
 
-    
     ring.appendChild(imagenJugador);
     ring.appendChild(imagenMaquina);
 }
 
 function jugar(eleccion) {
-
     jugadaJugador = parseInt(eleccion);
     jugadaMaquina = Math.floor(Math.random() * 5);
 
     actualizarRing(jugadaJugador, jugadaMaquina);
 
+    const resultado = document.getElementById('resultado');
+
     if (jugadaJugador === jugadaMaquina) {
-        alert("Empate");
+        resultado.textContent = "Empate";
     } else if (
         (jugadaJugador === 0 && jugadaMaquina === 2) ||
         (jugadaJugador === 1 && jugadaMaquina === 0) ||
@@ -124,10 +108,10 @@ function jugar(eleccion) {
         (jugadaJugador === 3 && jugadaMaquina === 1) ||
         (jugadaJugador === 4 && jugadaMaquina === 0)
     ) {
-        alert("Ganador");
+        resultado.textContent = "Ganador";
         victorias++;
     } else {
-        alert("Perdedor");
+        resultado.textContent = "Perdedor";
         derrotas++;
     }
 
