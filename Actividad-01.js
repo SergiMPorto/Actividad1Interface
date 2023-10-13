@@ -17,25 +17,32 @@ document.addEventListener("DOMContentLoaded", () => {
             opcion.style.width = '200px';
             opcion.style.height = '200px';
             opcion.style.borderColor = 'red';
+
+            //    jugadaJugador == opcion;
+
+            jugar();
         });
 
     }
+
+
 });
 
 let jugador;
 let maquina;
 let piedram;
-let piedra;
-let tijera;
+let piedra = 0;
+let tijera = 2;
 let tijeram;
-let papel;
+let papel = 1;
 let papelm;
-let lagarto;
+let lagarto = 3;
 let lagartom;
-let spoock;
+let spoock = 4;
 let spoockm;
-let jugadaJugador;
+let jugadaJugador = 1;
 let jugadaMaquina;
+let eleccion;
 
 function iniciarVariable() {
     jugador = document.getElementsByClassName("jugador");
@@ -52,27 +59,23 @@ function iniciarVariable() {
     spoockm = document.getElementById("spoockm");
 }
 
-function juegoJugador(eleccion) {
-    jugadaJugador = eleccion;
-}
 
-function juegoMaquina() {
-    const opciones = ["piedram", "papelm", "tijeram", "lagartom", "spoockm"];
-    jugadaMaquina = opciones[Math.floor(Math.random() * opciones.length)];
-}
 
 function jugar() {
+
+    jugadaMaquina = Math.floor(Math.random() * 5);
+
     if (jugadaJugador === jugadaMaquina) {
         alert("Empate");
     } else if (
-        (jugadaJugador === "piedra" && jugadaMaquina === "tijeram") ||
-        (jugadaJugador === "papel" && jugadaMaquina === "piedram") ||
-        (jugadaJugador === "papel" && jugadaMaquina === "spoockm") ||
-        (jugadaJugador === "lagarto" && jugadaMaquina === "spoockm") ||
-        (jugadaJugador === "spoock" && jugadaMaquina === "tijeram") ||
-        (jugadaJugador === "tijera" && jugadaMaquina === "lagartom") ||
-        (jugadaJugador === "lagarto" && jugadaMaquina === "papelm") ||
-        (jugadaJugador === "spoock" && jugadaMaquina === "piedram")
+        (jugadaJugador === 0 && jugadaMaquina === 2) ||
+        (jugadaJugador === 1 && jugadaMaquina === 0) ||
+        (jugadaJugador === 1 && jugadaMaquina === 4) ||
+        (jugadaJugador === 3 && jugadaMaquina === 4) ||
+        (jugadaJugador === 4 && jugadaMaquina === 2) ||
+        (jugadaJugador === 2 && jugadaMaquina === 3) ||
+        (jugadaJugador === 3 && jugadaMaquina === 1) ||
+        (jugadaJugador === 4 && jugadaMaquina === 0)
     ) {
         alert("Ganador");
     } else {
