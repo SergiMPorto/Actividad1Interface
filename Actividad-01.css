@@ -34,7 +34,7 @@ h1{
 #marcador{
     font-family: Pixelify Sans, sans-serif;
     color: black;
-    font-size: 150px;
+    font-size: 125px;
     text-align: center;
     text-shadow: -2px 0 0 #fdff2a, -4px 0 0 #df4a42, 2px 0 0 #91fcfe, 4px 0 0 #4405fc;
 }
@@ -70,7 +70,7 @@ h1{
 
 #lagartija {
     width: 125px;
-    position: fixed; 
+   
     top: 0;
     right: 0;
     float: right;
@@ -91,9 +91,9 @@ h1{
 }
 
 .opcion {
-    width: 200px;
-    height: 150px;
-    margin: 5mm;
+    width: 135px;
+    height: 101px;
+    margin: 3mm;
 }
 
 .ring {
