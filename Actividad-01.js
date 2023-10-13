@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
     botonStart.addEventListener('click', () => {
         const opciones = document.getElementsByClassName("opcion");
 
-
         for (const opcion of opciones) {
             opcion.addEventListener('mouseover', () => {
                 opcion.style.width = '200px';
@@ -17,22 +16,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 opcion.style.height = '101px';
                 opcion.style.borderColor = 'initial';
             });
+
             opcion.addEventListener('click', () => {
-
-                opcion.style.width = '200px';
-                opcion.style.height = '200px';
-                opcion.style.borderColor = 'red';
-
-
-
-                jugar();
+                const eleccion = opcion.id;
+                jugar(eleccion);
             });
-
         }
     });
-
-
-
 });
 
 let jugador;
@@ -47,7 +37,7 @@ let lagarto = 3;
 let lagartom;
 let spoock = 4;
 let spoockm;
-let jugadaJugador = 1;
+let jugadaJugador;
 let jugadaMaquina;
 let eleccion;
 let victorias = 0;
@@ -76,42 +66,38 @@ function iniciarVariable() {
     spoockm = document.getElementById("spoockm");
 }
 
-
 function actualizarMarcador() {
     const marcador = document.getElementById('marcador');
     marcador.textContent = `${victorias}-${derrotas}`;
 }
 
 function actualizarRing(eleccionJugador, eleccionMaquina) {
-    const ring = document.querySelector('.ring'); // Obtén el div 'ring'
+    const ring = document.querySelector('.ring');
 
-    // Borra cualquier contenido actual en el div 'ring'
     ring.innerHTML = '';
 
-    // Crea una imagen para la elección del jugador
     const imagenJugador = document.createElement('img');
     imagenJugador.src = imagenesElecciones[eleccionJugador];
-    imagenJugador.classList.add('eleccion'); // Agrega una clase a la imagen si es necesario
+    imagenJugador.classList.add('eleccion');
 
-    // Crea una imagen para la elección de la máquina
     const imagenMaquina = document.createElement('img');
     imagenMaquina.src = imagenesElecciones[eleccionMaquina];
-    imagenMaquina.classList.add('eleccion'); // Agrega una clase a la imagen si es necesario
+    imagenMaquina.classList.add('eleccion');
 
-    // Agrega las imágenes de las elecciones al div 'ring'
     ring.appendChild(imagenJugador);
     ring.appendChild(imagenMaquina);
 }
 
-function jugar() {
-
+function jugar(eleccion) {
+    jugadaJugador = parseInt(eleccion);
     jugadaMaquina = Math.floor(Math.random() * 5);
 
     actualizarRing(jugadaJugador, jugadaMaquina);
 
+    const resultado = document.getElementById('resultado');
 
     if (jugadaJugador === jugadaMaquina) {
-        alert("Empate");
+        resultado.textContent = "Empate";
     } else if (
         (jugadaJugador === 0 && jugadaMaquina === 2) ||
         (jugadaJugador === 1 && jugadaMaquina === 0) ||
@@ -122,10 +108,10 @@ function jugar() {
         (jugadaJugador === 3 && jugadaMaquina === 1) ||
         (jugadaJugador === 4 && jugadaMaquina === 0)
     ) {
-        alert("Ganador");
+        resultado.textContent = "Ganador";
         victorias++;
     } else {
-        alert("Perdedor");
+        resultado.textContent = "Perdedor";
         derrotas++;
     }
 
