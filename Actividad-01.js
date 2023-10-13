@@ -1,13 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const opciones = document.getElementsByClassName("opcion");
+    const botonStart = document.getElementById('boton-start');
 
-    for (const opcion of opciones) {
-        opcion.addEventListener('mouseover', () => {
-            opcion.style.width = '200px';
-            opcion.style.height = '200px';
-            opcion.style.borderColor = 'red';
-        });
+    botonStart.addEventListener('click', () => {
+        const opciones = document.getElementsByClassName("opcion");
 
+<<<<<<< HEAD
         opcion.addEventListener('mouseout', () => {
             opcion.style.width = '135px';
             opcion.style.height = '101px';
@@ -26,6 +23,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+=======
+        for (const opcion of opciones) {
+            opcion.addEventListener('mouseover', () => {
+                opcion.style.width = '200px';
+                opcion.style.height = '200px';
+                opcion.style.borderColor = 'red';
+            });
+
+            opcion.addEventListener('mouseout', () => {
+                opcion.style.width = '135px';
+                opcion.style.height = '101px';
+                opcion.style.borderColor = 'initial';
+            });
+            opcion.addEventListener('click', () => {
+                opcion.style.width = '200px';
+                opcion.style.height = '200px';
+                opcion.style.borderColor = 'red';
+
+                jugar();
+            });
+
+        }
+    });
+        
+
+        
+>>>>>>> 73fcb058c0583867f6051d16a8592263540c535c
 });
 
 let jugador;
@@ -43,6 +67,9 @@ let spoockm;
 let jugadaJugador = 1;
 let jugadaMaquina;
 let eleccion;
+
+let victorias = 0;
+let derrotas = 0;
 
 function iniciarVariable() {
     jugador = document.getElementsByClassName("jugador");
@@ -65,6 +92,16 @@ function jugar() {
 
     jugadaMaquina = Math.floor(Math.random() * 5);
 
+function actualizarMarcador() {
+    const marcador = document.getElementById('marcador');
+    marcador.textContent = `${victorias}-${derrotas}`;
+}
+
+function jugar() {
+
+    jugadaMaquina = Math.floor(Math.random() * 5); 
+
+
     if (jugadaJugador === jugadaMaquina) {
         alert("Empate");
     } else if (
@@ -78,7 +115,13 @@ function jugar() {
         (jugadaJugador === 4 && jugadaMaquina === 0)
     ) {
         alert("Ganador");
+        victorias++;
     } else {
         alert("Perdedor");
+        derrotas++;
     }
+
+
+    actualizarMarcador();
 }
+
