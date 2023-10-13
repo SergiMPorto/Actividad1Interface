@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     botonStart.addEventListener('click', () => {
         const opciones = document.getElementsByClassName("opcion");
+        
 
         for (const opcion of opciones) {
             opcion.addEventListener('mouseover', () => {
@@ -17,15 +18,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 opcion.style.borderColor = 'initial';
             });
             opcion.addEventListener('click', () => {
-                opcion.style.width = '200px';
-                opcion.style.height = '200px';
-                opcion.style.borderColor = 'red';
 
-                jugar();
+                const eleccion = opcion.id;
+                
+                jugar(eleccion);
+
             });
 
+           
+
+
         }
+       
     });
+
+   
         
 
         
@@ -43,11 +50,19 @@ let lagarto = 3;
 let lagartom;
 let spoock = 4;
 let spoockm;
-let jugadaJugador = 1;
+let jugadaJugador;
 let jugadaMaquina;
 let eleccion;
 let victorias = 0;
 let derrotas = 0;
+
+const imagenesElecciones = {
+    0: 'img/manopiedra.png',
+    1: 'img/manopapel.png',
+    2: 'img/manotijera.png',
+    3: 'img/manolagarto.png',
+    4: 'img/manospock.png'
+};
 
 function iniciarVariable() {
     jugador = document.getElementsByClassName("jugador");
@@ -70,9 +85,32 @@ function actualizarMarcador() {
     marcador.textContent = `${victorias}-${derrotas}`;
 }
 
-function jugar() {
+function actualizarRing(eleccionJugador, eleccionMaquina) {
+    const ring = document.querySelector('.ring'); 
+    
+    ring.innerHTML = '';
 
-    jugadaMaquina = Math.floor(Math.random() * 5); 
+    
+    const imagenJugador = document.createElement('img');
+    imagenJugador.src = imagenesElecciones[eleccionJugador];
+    imagenJugador.classList.add('eleccion'); 
+
+    
+    const imagenMaquina = document.createElement('img');
+    imagenMaquina.src = imagenesElecciones[eleccionMaquina];
+    imagenMaquina.classList.add('eleccion'); 
+
+    
+    ring.appendChild(imagenJugador);
+    ring.appendChild(imagenMaquina);
+}
+
+function jugar(eleccion) {
+
+    jugadaJugador = parseInt(eleccion);
+    jugadaMaquina = Math.floor(Math.random() * 5);
+
+    actualizarRing(jugadaJugador, jugadaMaquina);
 
     if (jugadaJugador === jugadaMaquina) {
         alert("Empate");
