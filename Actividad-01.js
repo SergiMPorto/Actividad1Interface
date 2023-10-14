@@ -1,28 +1,72 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+    let juegoIniciado = false; // Variable para controlar si el juego está iniciado
+
     const botonStart = document.getElementById('boton-start');
 
-    botonStart.addEventListener('click', () => {
-        const opciones = document.getElementsByClassName("opcion");
+    // Función para iniciar o reiniciar el juego
+    function iniciarOReiniciarJuego() {
+        if (!juegoIniciado) { // Si el juego no está iniciado, iniciar
+            const opciones = document.getElementsByClassName("opcion");
 
-        for (const opcion of opciones) {
-            opcion.addEventListener('mouseover', () => {
-                opcion.style.width = '200px';
-                opcion.style.height = '200px';
-                opcion.style.borderColor = 'red';
-            });
+            for (const opcion of opciones) {
+                opcion.addEventListener('mouseover', () => {
+                    opcion.style.width = '200px';
+                    opcion.style.height = '200px';
+                    opcion.style.borderColor = 'red';
+                });
 
-            opcion.addEventListener('mouseout', () => {
-                opcion.style.width = '135px';
-                opcion.style.height = '101px';
-                opcion.style.borderColor = 'initial';
-            });
+                opcion.addEventListener('mouseout', () => {
+                    opcion.style.width = '135px';
+                    opcion.style.height = '101px';
+                    opcion.style.borderColor = 'initial';
+                });
 
-            opcion.addEventListener('click', () => {
-                const eleccion = opcion.id;
-                jugar(eleccion);
-            });
+                opcion.addEventListener('click', () => {
+                    const eleccion = opcion.id;
+                    jugar(eleccion);
+                });
+            }
+
+            juegoIniciado = true; // Marcamos el juego como iniciado
+            botonStart.textContent = 'RESTART'; // Cambiamos el texto del botón
+        } else { // Si el juego está iniciado, reiniciar
+            reiniciarJuego();
+            juegoIniciado = false; // Marcamos el juego como no iniciado
+            botonStart.textContent = 'START'; // Cambiamos el texto del botón
         }
-    });
+    }
+
+    botonStart.addEventListener('click', iniciarOReiniciarJuego);
+    
+    // const botonStart = document.getElementById('boton-start');
+
+    // botonStart.addEventListener('click', () => {
+    //     const opciones = document.getElementsByClassName("opcion");
+
+    //     for (const opcion of opciones) {
+    //         opcion.addEventListener('mouseover', () => {
+    //             opcion.style.width = '200px';
+    //             opcion.style.height = '200px';
+    //             opcion.style.borderColor = 'red';
+    //         });
+
+    //         opcion.addEventListener('mouseout', () => {
+    //             opcion.style.width = '135px';
+    //             opcion.style.height = '101px';
+    //             opcion.style.borderColor = 'initial';
+    //         });
+
+    //         opcion.addEventListener('click', () => {
+    //             const eleccion = opcion.id;
+    //             jugar(eleccion);
+
+               
+    //         });
+    //     }
+
+        
+    // });
 });
 
 let jugador;
@@ -66,6 +110,38 @@ function iniciarVariable() {
     spoockm = document.getElementById("spoockm");
 }
 
+function iniciarJuego(){
+
+    const botonStart = document.getElementById('boton-start');
+
+    botonStart.addEventListener('click', () => {
+        const opciones = document.getElementsByClassName("opcion");
+
+        for (const opcion of opciones) {
+            opcion.addEventListener('mouseover', () => {
+                opcion.style.width = '200px';
+                opcion.style.height = '200px';
+                opcion.style.borderColor = 'red';
+            });
+
+            opcion.addEventListener('mouseout', () => {
+                opcion.style.width = '135px';
+                opcion.style.height = '101px';
+                opcion.style.borderColor = 'initial';
+            });
+
+            opcion.addEventListener('click', () => {
+                const eleccion = opcion.id;
+                jugar(eleccion);
+
+               
+            });
+        }
+
+        
+    });
+}
+
 function actualizarMarcador() {
     const marcador = document.getElementById('marcador');
     marcador.textContent = `${victorias}-${derrotas}`;
@@ -88,6 +164,38 @@ function actualizarRing(eleccionJugador, eleccionMaquina) {
     ring.appendChild(imagenMaquina);
 }
 
+function reiniciarJuego() {
+
+    // Reiniciamos valores
+    victorias = 0;
+    derrotas = 0;
+    
+    // Volvemos a actualizar el marcador
+    actualizarMarcador();
+
+    //Limpiamos las imagenes del centro de la pantalla y volvemos a poner el ring
+    const ring = document.querySelector('.ring');
+    ring.innerHTML = '';
+    const imagenRing = document.createElement('img');
+    imagenRing.src = 'img/boxeo.jpg';
+    ring.appendChild(imagenRing);
+    
+    // Limpiamos el text-box del nombre
+    const inputNombre = document.getElementById('nombre');
+    inputNombre.value = '';
+
+    // Renombramos el boton Start
+    const botonStart = document.getElementById('boton-start');
+    botonStart.textContent = 'START';
+    botonStart.removeEventListener('click', reiniciarJuego); 
+    botonStart.addEventListener('click', iniciarJuego);
+
+    const resultado = document.getElementById('resultado');
+    resultado.textContent = ' ';
+
+    
+}
+
 function jugar(eleccion) {
     jugadaJugador = parseInt(eleccion);
     jugadaMaquina = Math.floor(Math.random() * 5);
@@ -98,22 +206,29 @@ function jugar(eleccion) {
 
     if (jugadaJugador === jugadaMaquina) {
         resultado.textContent = "Empate";
-    } else if (
-        (jugadaJugador === 0 && jugadaMaquina === 2) ||
-        (jugadaJugador === 1 && jugadaMaquina === 0) ||
-        (jugadaJugador === 1 && jugadaMaquina === 4) ||
-        (jugadaJugador === 3 && jugadaMaquina === 4) ||
-        (jugadaJugador === 4 && jugadaMaquina === 2) ||
-        (jugadaJugador === 2 && jugadaMaquina === 3) ||
-        (jugadaJugador === 3 && jugadaMaquina === 1) ||
-        (jugadaJugador === 4 && jugadaMaquina === 0)
-    ) {
-        resultado.textContent = "Ganador";
-        victorias++;
     } else {
-        resultado.textContent = "Perdedor";
-        derrotas++;
+        if (
+            (jugadaJugador === 0 && jugadaMaquina === 2) ||
+            (jugadaJugador === 1 && jugadaMaquina === 0) ||
+            (jugadaJugador === 1 && jugadaMaquina === 4) ||
+            (jugadaJugador === 3 && jugadaMaquina === 4) ||
+            (jugadaJugador === 4 && jugadaMaquina === 2) ||
+            (jugadaJugador === 2 && jugadaMaquina === 3) ||
+            (jugadaJugador === 3 && jugadaMaquina === 1) ||
+            (jugadaJugador === 4 && jugadaMaquina === 0)
+        ) {
+            resultado.textContent = "Ganador";
+            victorias++;
+        } else {
+            resultado.textContent = "Perdedor";
+            derrotas++;
+        }
     }
-
+    //Actualizamos marcador
     actualizarMarcador();
+
+    //Cambiamos las propiedades del boton start y lo convertimos en un boton de restart
+    const botonStart = document.getElementById('boton-start');
+    botonStart.textContent = 'RESTART';
+    botonStart.addEventListener('click', reiniciarJuego);
 }
