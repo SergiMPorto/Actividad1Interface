@@ -113,6 +113,7 @@ h1{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    margin-left: 100px;
 }
 
 #ring {
@@ -121,15 +122,16 @@ h1{
 }
 #resultado {
     font-size: 48px;
-        text-align: center;
+    text-align: center;
     color: black; 
     position: absolute;
+    text-shadow: -2px 0 0 #fdff2a, -4px 0 0 #df4a42, 2px 0 0 #91fcfe, 4px 0 0 #4405fc;
     top: 50%; 
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
 }
-   
+
 #piedra {
     border: 2px solid transparent; 
     transition: border-color 0.3s; 

@@ -1,12 +1,26 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    let juegoIniciado = false; // Variable para controlar si el juego está iniciado
+    let juegoIniciado = false; 
 
     const botonStart = document.getElementById('boton-start');
 
-    // Función para iniciar o reiniciar el juego
+    const inputNombre = document.getElementById('nombre'); 
+
+    // Deshabilitamos el botón "Start" inicialmente
+    botonStart.disabled = true;
+
+    //SE PUEDE METER EN UNA FUNCION
+    inputNombre.addEventListener('input', () => {
+        if (inputNombre.value !== '') { // Habilita el botón si hay algún valor
+            botonStart.disabled = false;
+        } else { // Deshabilita el botón si no hay valor
+            botonStart.disabled = true;
+        }
+    });
+
+    
     function iniciarOReiniciarJuego() {
-        if (!juegoIniciado) { // Si el juego no está iniciado, iniciar
+        if (!juegoIniciado) { 
             const opciones = document.getElementsByClassName("opcion");
 
             for (const opcion of opciones) {
@@ -28,45 +42,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
 
-            juegoIniciado = true; // Marcamos el juego como iniciado
-            botonStart.textContent = 'RESTART'; // Cambiamos el texto del botón
-        } else { // Si el juego está iniciado, reiniciar
+            juegoIniciado = true; 
+            botonStart.textContent = 'RESTART'; 
+        } else { 
             reiniciarJuego();
-            juegoIniciado = false; // Marcamos el juego como no iniciado
-            botonStart.textContent = 'START'; // Cambiamos el texto del botón
+            juegoIniciado = false; 
+            botonStart.textContent = 'START'; 
         }
     }
 
     botonStart.addEventListener('click', iniciarOReiniciarJuego);
     
-    // const botonStart = document.getElementById('boton-start');
-
-    // botonStart.addEventListener('click', () => {
-    //     const opciones = document.getElementsByClassName("opcion");
-
-    //     for (const opcion of opciones) {
-    //         opcion.addEventListener('mouseover', () => {
-    //             opcion.style.width = '200px';
-    //             opcion.style.height = '200px';
-    //             opcion.style.borderColor = 'red';
-    //         });
-
-    //         opcion.addEventListener('mouseout', () => {
-    //             opcion.style.width = '135px';
-    //             opcion.style.height = '101px';
-    //             opcion.style.borderColor = 'initial';
-    //         });
-
-    //         opcion.addEventListener('click', () => {
-    //             const eleccion = opcion.id;
-    //             jugar(eleccion);
-
-               
-    //         });
-    //     }
-
-        
-    // });
+   
 });
 
 let jugador;
@@ -205,7 +192,7 @@ function jugar(eleccion) {
     const resultado = document.getElementById('resultado');
 
     if (jugadaJugador === jugadaMaquina) {
-        resultado.textContent = "Empate";
+        resultado.textContent = "EMPATE";
     } else {
         if (
             (jugadaJugador === 0 && jugadaMaquina === 2) ||
@@ -217,10 +204,10 @@ function jugar(eleccion) {
             (jugadaJugador === 3 && jugadaMaquina === 1) ||
             (jugadaJugador === 4 && jugadaMaquina === 0)
         ) {
-            resultado.textContent = "Ganador";
+            resultado.textContent = "GANADOR";
             victorias++;
         } else {
-            resultado.textContent = "Perdedor";
+            resultado.textContent = "PERDEDOR";
             derrotas++;
         }
     }
