@@ -71,19 +71,19 @@ h1{
 #Spoock {
     
     float: left;
-    width: 50px;
-     position: fixed;
-    top: 0;
-    left: 0;
+    width: 3.5%;
+    position: absolute;
+    top: 10%;
+    left: 38%;
     
     
 }
 
 #lagartija {
-    width: 125px;
-   
-    top: 0;
-    right: 0;
+    width: 5%;
+    position:absolute!important;
+    top: 11%;
+    right: 38%;
     float: right;
 }
 
@@ -91,6 +91,10 @@ h1{
     display: flex;
     justify-content: center; 
     align-items: center;
+}
+
+.jugador{
+    margin-bottom: auto;
 }
 
 .jugador, .maquina {
@@ -102,10 +106,10 @@ h1{
 }
 
 .opcion {
-    width: 50%;
-    max-width: 150px; 
-    height: auto;
+    width: 150px;
+    height: 150px;
     margin: 3mm;
+    
 }
 
 .ring {
@@ -117,11 +121,11 @@ h1{
 }
 
 #ring {
-    max-width: 100%;
+    max-width: 90%;
     max-height: 100%;
 }
 #resultado {
-    font-size: 48px;
+    font-size: 70px;
     text-align: center;
     color: black; 
     position: absolute;

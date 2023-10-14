@@ -31,8 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
 
                 opcion.addEventListener('mouseout', () => {
-                    opcion.style.width = '135px';
-                    opcion.style.height = '101px';
+                    opcion.style.width = '150px';
+                    opcion.style.height = '150px';
                     opcion.style.borderColor = 'initial';
                 });
 
@@ -167,6 +167,8 @@ function reiniciarJuego() {
     imagenRing.src = 'img/boxeo.jpg';
     ring.appendChild(imagenRing);
     
+    
+    
     // Limpiamos el text-box del nombre
     const inputNombre = document.getElementById('nombre');
     inputNombre.value = '';
@@ -204,10 +206,10 @@ function jugar(eleccion) {
             (jugadaJugador === 3 && jugadaMaquina === 1) ||
             (jugadaJugador === 4 && jugadaMaquina === 0)
         ) {
-            resultado.textContent = "GANADOR";
+            resultado.textContent = "JUGADOR HA GANADO";
             victorias++;
         } else {
-            resultado.textContent = "PERDEDOR";
+            resultado.textContent = "LA MAQUINA HA GANADO";
             derrotas++;
         }
     }
