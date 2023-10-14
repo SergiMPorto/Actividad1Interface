@@ -1,28 +1,59 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+    let juegoIniciado = false; 
+
     const botonStart = document.getElementById('boton-start');
 
-    botonStart.addEventListener('click', () => {
-        const opciones = document.getElementsByClassName("opcion");
+    const inputNombre = document.getElementById('nombre'); 
 
-        for (const opcion of opciones) {
-            opcion.addEventListener('mouseover', () => {
-                opcion.style.width = '200px';
-                opcion.style.height = '200px';
-                opcion.style.borderColor = 'red';
-            });
+    // Deshabilitamos el botón "Start" inicialmente
+    botonStart.disabled = true;
 
-            opcion.addEventListener('mouseout', () => {
-                opcion.style.width = '135px';
-                opcion.style.height = '101px';
-                opcion.style.borderColor = 'initial';
-            });
-
-            opcion.addEventListener('click', () => {
-                const eleccion = opcion.id;
-                jugar(eleccion);
-            });
+    //SE PUEDE METER EN UNA FUNCION
+    inputNombre.addEventListener('input', () => {
+        if (inputNombre.value !== '') { // Habilita el botón si hay algún valor
+            botonStart.disabled = false;
+        } else { // Deshabilita el botón si no hay valor
+            botonStart.disabled = true;
         }
     });
+
+    
+    function iniciarOReiniciarJuego() {
+        if (!juegoIniciado) { 
+            const opciones = document.getElementsByClassName("opcion");
+
+            for (const opcion of opciones) {
+                opcion.addEventListener('mouseover', () => {
+                    opcion.style.width = '200px';
+                    opcion.style.height = '200px';
+                    opcion.style.borderColor = 'red';
+                });
+
+                opcion.addEventListener('mouseout', () => {
+                    opcion.style.width = '150px';
+                    opcion.style.height = '150px';
+                    opcion.style.borderColor = 'initial';
+                });
+
+                opcion.addEventListener('click', () => {
+                    const eleccion = opcion.id;
+                    jugar(eleccion);
+                });
+            }
+
+            juegoIniciado = true; 
+            botonStart.textContent = 'RESTART'; 
+        } else { 
+            reiniciarJuego();
+            juegoIniciado = false; 
+            botonStart.textContent = 'START'; 
+        }
+    }
+
+    botonStart.addEventListener('click', iniciarOReiniciarJuego);
+    
+   
 });
 
 let jugador;
@@ -66,6 +97,38 @@ function iniciarVariable() {
     spoockm = document.getElementById("spoockm");
 }
 
+function iniciarJuego(){
+
+    const botonStart = document.getElementById('boton-start');
+
+    botonStart.addEventListener('click', () => {
+        const opciones = document.getElementsByClassName("opcion");
+
+        for (const opcion of opciones) {
+            opcion.addEventListener('mouseover', () => {
+                opcion.style.width = '200px';
+                opcion.style.height = '200px';
+                opcion.style.borderColor = 'red';
+            });
+
+            opcion.addEventListener('mouseout', () => {
+                opcion.style.width = '135px';
+                opcion.style.height = '101px';
+                opcion.style.borderColor = 'initial';
+            });
+
+            opcion.addEventListener('click', () => {
+                const eleccion = opcion.id;
+                jugar(eleccion);
+
+               
+            });
+        }
+
+        
+    });
+}
+
 function actualizarMarcador() {
     const marcador = document.getElementById('marcador');
     marcador.textContent = `${victorias}-${derrotas}`;
@@ -88,6 +151,40 @@ function actualizarRing(eleccionJugador, eleccionMaquina) {
     ring.appendChild(imagenMaquina);
 }
 
+function reiniciarJuego() {
+
+    // Reiniciamos valores
+    victorias = 0;
+    derrotas = 0;
+    
+    // Volvemos a actualizar el marcador
+    actualizarMarcador();
+
+    //Limpiamos las imagenes del centro de la pantalla y volvemos a poner el ring
+    const ring = document.querySelector('.ring');
+    ring.innerHTML = '';
+    const imagenRing = document.createElement('img');
+    imagenRing.src = 'img/boxeo.jpg';
+    ring.appendChild(imagenRing);
+    
+    
+    
+    // Limpiamos el text-box del nombre
+    const inputNombre = document.getElementById('nombre');
+    inputNombre.value = '';
+
+    // Renombramos el boton Start
+    const botonStart = document.getElementById('boton-start');
+    botonStart.textContent = 'START';
+    botonStart.removeEventListener('click', reiniciarJuego); 
+    botonStart.addEventListener('click', iniciarJuego);
+
+    const resultado = document.getElementById('resultado');
+    resultado.textContent = ' ';
+
+    
+}
+
 function jugar(eleccion) {
     jugadaJugador = parseInt(eleccion);
     jugadaMaquina = Math.floor(Math.random() * 5);
@@ -97,23 +194,30 @@ function jugar(eleccion) {
     const resultado = document.getElementById('resultado');
 
     if (jugadaJugador === jugadaMaquina) {
-        resultado.textContent = "Empate";
-    } else if (
-        (jugadaJugador === 0 && jugadaMaquina === 2) ||
-        (jugadaJugador === 1 && jugadaMaquina === 0) ||
-        (jugadaJugador === 1 && jugadaMaquina === 4) ||
-        (jugadaJugador === 3 && jugadaMaquina === 4) ||
-        (jugadaJugador === 4 && jugadaMaquina === 2) ||
-        (jugadaJugador === 2 && jugadaMaquina === 3) ||
-        (jugadaJugador === 3 && jugadaMaquina === 1) ||
-        (jugadaJugador === 4 && jugadaMaquina === 0)
-    ) {
-        resultado.textContent = "Ganador";
-        victorias++;
+        resultado.textContent = "EMPATE";
     } else {
-        resultado.textContent = "Perdedor";
-        derrotas++;
+        if (
+            (jugadaJugador === 0 && jugadaMaquina === 2) ||
+            (jugadaJugador === 1 && jugadaMaquina === 0) ||
+            (jugadaJugador === 1 && jugadaMaquina === 4) ||
+            (jugadaJugador === 3 && jugadaMaquina === 4) ||
+            (jugadaJugador === 4 && jugadaMaquina === 2) ||
+            (jugadaJugador === 2 && jugadaMaquina === 3) ||
+            (jugadaJugador === 3 && jugadaMaquina === 1) ||
+            (jugadaJugador === 4 && jugadaMaquina === 0)
+        ) {
+            resultado.textContent = "JUGADOR HA GANADO";
+            victorias++;
+        } else {
+            resultado.textContent = "LA MAQUINA HA GANADO";
+            derrotas++;
+        }
     }
-
+    //Actualizamos marcador
     actualizarMarcador();
+
+    //Cambiamos las propiedades del boton start y lo convertimos en un boton de restart
+    const botonStart = document.getElementById('boton-start');
+    botonStart.textContent = 'RESTART';
+    botonStart.addEventListener('click', reiniciarJuego);
 }
