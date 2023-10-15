@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    let juegoIniciado = false; 
+    let juegoIniciado = false;
 
     const botonStart = document.getElementById('boton-start');
 
-    const inputNombre = document.getElementById('nombre'); 
+    const inputNombre = document.getElementById('nombre');
 
     // Deshabilitamos el botón "Start" inicialmente
     botonStart.disabled = true;
@@ -18,9 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    
+
     function iniciarOReiniciarJuego() {
-        if (!juegoIniciado) { 
+        if (!juegoIniciado) {
             const opciones = document.getElementsByClassName("opcion");
 
             for (const opcion of opciones) {
@@ -42,18 +42,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
 
-            juegoIniciado = true; 
-            botonStart.textContent = 'RESTART'; 
-        } else { 
+            juegoIniciado = true;
+            botonStart.textContent = 'RESTART';
+        } else {
             reiniciarJuego();
-            juegoIniciado = false; 
-            botonStart.textContent = 'START'; 
+            juegoIniciado = false;
+            botonStart.textContent = 'START';
         }
     }
 
     botonStart.addEventListener('click', iniciarOReiniciarJuego);
-    
-   
+
+
 });
 
 let jugador;
@@ -97,7 +97,7 @@ function iniciarVariable() {
     spoockm = document.getElementById("spoockm");
 }
 
-function iniciarJuego(){
+function iniciarJuego() {
 
     const botonStart = document.getElementById('boton-start');
 
@@ -121,11 +121,11 @@ function iniciarJuego(){
                 const eleccion = opcion.id;
                 jugar(eleccion);
 
-               
+
             });
         }
 
-        
+
     });
 }
 
@@ -156,7 +156,7 @@ function reiniciarJuego() {
     // Reiniciamos valores
     victorias = 0;
     derrotas = 0;
-    
+
     // Volvemos a actualizar el marcador
     actualizarMarcador();
 
@@ -166,9 +166,9 @@ function reiniciarJuego() {
     const imagenRing = document.createElement('img');
     imagenRing.src = 'img/boxeo.jpg';
     ring.appendChild(imagenRing);
-    
-    
-    
+
+
+
     // Limpiamos el text-box del nombre
     const inputNombre = document.getElementById('nombre');
     inputNombre.value = '';
@@ -176,13 +176,12 @@ function reiniciarJuego() {
     // Renombramos el boton Start
     const botonStart = document.getElementById('boton-start');
     botonStart.textContent = 'START';
-    botonStart.removeEventListener('click', reiniciarJuego); 
+    botonStart.removeEventListener('click', reiniciarJuego);
     botonStart.addEventListener('click', iniciarJuego);
 
-    const resultado = document.getElementById('resultado');
-    resultado.textContent = ' ';
+ 
 
-    
+
 }
 
 function jugar(eleccion) {
@@ -192,9 +191,11 @@ function jugar(eleccion) {
     actualizarRing(jugadaJugador, jugadaMaquina);
 
     const resultado = document.getElementById('resultado');
-
+    const inputNombre = document.getElementById('nombre');
+    const nombreUsuario = inputNombre.value;
+    
     if (jugadaJugador === jugadaMaquina) {
-        resultado.textContent = "EMPATE";
+        resultado.textContent = `¡${nombreUsuario}, has empatado!`;
     } else {
         if (
             (jugadaJugador === 0 && jugadaMaquina === 2) ||
@@ -206,10 +207,10 @@ function jugar(eleccion) {
             (jugadaJugador === 3 && jugadaMaquina === 1) ||
             (jugadaJugador === 4 && jugadaMaquina === 0)
         ) {
-            resultado.textContent = "JUGADOR HA GANADO";
+            resultado.textContent = `¡${nombreUsuario}, has ganado!`;
             victorias++;
         } else {
-            resultado.textContent = "LA MAQUINA HA GANADO";
+            resultado.textContent = `Has perdido, ${nombreUsuario}.`;
             derrotas++;
         }
     }
