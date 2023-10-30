@@ -151,6 +151,8 @@ function actualizarRing(eleccionJugador, eleccionMaquina) {
     ring.appendChild(imagenMaquina);
 }
 
+
+
 function reiniciarJuego() {
     // Restablecer variables
     victorias = 0;
@@ -171,20 +173,33 @@ function reiniciarJuego() {
 
     // Deshabilitar el botón "START"
     const botonStart = document.getElementById('boton-start');
-    botonStart.disabled = true;
+    
     botonStart.textContent = 'START';
+    inputNombre.addEventListener('input', () => {
+        if (inputNombre.value !== '') { // Habilita el botón si hay algún valor
+            botonStart.disabled = false;
+        } else { // Deshabilita el botón si no hay valor
+            botonStart.disabled = true;
+        }
+    });
 
     // Restablecer el ring con la imagen inicial
     const ring = document.querySelector('.ring');
     ring.innerHTML = '';
     const imagenRing = document.createElement('img');
     imagenRing.src = 'img/boxeo.jpg';
+
+    // Aplicar características de CSS a la imagen
+    imagenRing.style.maxWidth = '90%';
+    imagenRing.style.maxHeight = '100%';
+    imagenRing.style.position = 'relative';
+
     ring.appendChild(imagenRing);
+
+    
 
     // Habilitar eventos de opciones
     habilitarEventosOpciones();
-
-    iniciarJuego();
 }
 
 function jugar(eleccion) {
