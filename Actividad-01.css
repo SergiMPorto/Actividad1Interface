@@ -53,14 +53,14 @@ header {
     width: 3.5%;
     position: absolute;
     top: 10%;
-    left: 38%;
+    left: 5cm;
 }
 
 #lagartija {
     width: 5%;
     position: absolute;
     top: 11%;
-    right: 38%;
+    right: 5cm;
     float: right;
 }
 
