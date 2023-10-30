@@ -152,37 +152,44 @@ function actualizarRing(eleccionJugador, eleccionMaquina) {
 }
 
 function reiniciarJuego() {
-
-    // Reiniciamos valores
+    // Restablecer variables
     victorias = 0;
     derrotas = 0;
-    
-    // Volvemos a actualizar el marcador
+    jugadaJugador = undefined;
+    jugadaMaquina = undefined;
+
+    // Actualizar el marcador
     actualizarMarcador();
 
-    //Limpiamos las imagenes del centro de la pantalla y volvemos a poner el ring
+    // Limpiar el resultado
+    const resultado = document.getElementById('resultado');
+    resultado.textContent = '';
+
+    // Limpiar el cuadro de texto del nombre
+    const inputNombre = document.getElementById('nombre');
+    inputNombre.value = '';
+
+    // Deshabilitar el botón "START"
+    const botonStart = document.getElementById('boton-start');
+    
+    botonStart.textContent = 'START';
+    inputNombre.addEventListener('input', () => {
+        if (inputNombre.value !== '') { // Habilita el botón si hay algún valor
+            botonStart.disabled = false;
+        } else { // Deshabilita el botón si no hay valor
+            botonStart.disabled = true;
+        }
+    });
+
+    // Restablecer el ring con la imagen inicial
     const ring = document.querySelector('.ring');
     ring.innerHTML = '';
     const imagenRing = document.createElement('img');
     imagenRing.src = 'img/boxeo.jpg';
     ring.appendChild(imagenRing);
-    
-    
-    
-    // Limpiamos el text-box del nombre
-    const inputNombre = document.getElementById('nombre');
-    inputNombre.value = '';
 
-    // Renombramos el boton Start
-    const botonStart = document.getElementById('boton-start');
-    botonStart.textContent = 'START';
-    botonStart.removeEventListener('click', reiniciarJuego); 
-    botonStart.addEventListener('click', iniciarJuego);
-
-    const resultado = document.getElementById('resultado');
-    resultado.textContent = ' ';
-
-    
+    // Habilitar eventos de opciones
+    habilitarEventosOpciones();
 }
 
 function jugar(eleccion) {
@@ -220,4 +227,5 @@ function jugar(eleccion) {
     const botonStart = document.getElementById('boton-start');
     botonStart.textContent = 'RESTART';
     botonStart.addEventListener('click', reiniciarJuego);
+    
 }
