@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentloaded", () => {
 
     let juegoIniciado = false;
 
@@ -222,3 +222,6 @@ function jugar(eleccion) {
     botonStart.textContent = 'RESTART';
     botonStart.addEventListener('click', reiniciarJuego);
 }
+window.onload = function () {
+    iniciarJuego();
+};
